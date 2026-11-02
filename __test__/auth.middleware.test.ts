@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import { authMiddleware } from '../middleware/auth';
 import User from '../models/User';
 
-// ─── helpers ────────────────────────────────────────────────────────────────
 
 const mockRes = () => {
   const res = { status: jest.fn(), json: jest.fn() };
@@ -11,7 +10,6 @@ const mockRes = () => {
   return res;
 };
 
-// ─── Auth Middleware ─────────────────────────────────────────────────────────
 
 describe('Authentication middleware', () => {
   it('returns 401 when no Authorization header is sent', async () => {
@@ -27,12 +25,10 @@ describe('Authentication middleware', () => {
   });
 
   it('returns 401 when the Authorization header has an empty bearer value', async () => {
-    // Header present but token string is empty after stripping "Bearer "
     const req = { header: jest.fn().mockReturnValue('Bearer ') };
     const res = mockRes();
     const next = jest.fn();
 
-    // jwt.verify with an empty string throws, so middleware catches and returns Invalid token
     await authMiddleware(req as any, res as any, next);
 
     expect(res.status).toHaveBeenCalledWith(401);
@@ -94,7 +90,7 @@ describe('Authentication middleware', () => {
 
     expect(verifySpy).toHaveBeenCalledWith(
       'some.token',
-      expect.any(String) // JWT_SECRET or the fallback
+      expect.any(String)
     );
   });
 });

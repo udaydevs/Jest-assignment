@@ -104,7 +104,6 @@ describe('GET /api/salons/:salonId/available-slots', () => {
     const freeStylistId = new Types.ObjectId();
     const { salonId, serviceId } = newIds();
 
-    // Salon: 09:00 – 10:30, service: 60 min → slots at 09:00 and 09:30
     jest.spyOn(Salon, 'findById').mockResolvedValue({ openTime: '09:00', closeTime: '10:30' } as any);
     jest.spyOn(Service, 'findById').mockResolvedValue({ name: 'Cut', duration: 60 } as any);
     jest.spyOn(User, 'find').mockResolvedValue([

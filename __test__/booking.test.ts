@@ -3,7 +3,6 @@ import { createBooking, cancelBooking } from '../controllers/bookingController';
 import Booking from '../models/Booking';
 import Service from '../models/Service';
 
-// ─── helpers ────────────────────────────────────────────────────────────────
 
 const mockRes = () => {
   const res = { status: jest.fn(), json: jest.fn() };
@@ -18,7 +17,6 @@ const newIds = () => ({
   serviceId: new Types.ObjectId().toString(),
 });
 
-// ─── POST /api/bookings (createBooking) ─────────────────────────────────────
 
 describe('POST /api/bookings', () => {
   it('returns 400 when the date field is missing from the request body', async () => {
@@ -138,7 +136,6 @@ describe('POST /api/bookings', () => {
   });
 });
 
-// ─── POST /api/bookings/:bookingId/cancel (cancelBooking) ───────────────────
 
 describe('POST /api/bookings/:bookingId/cancel', () => {
   const customerId = new Types.ObjectId();
