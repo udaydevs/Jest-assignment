@@ -1,5 +1,3 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -39,5 +37,7 @@ mongoose.connect(MONGO_URI)
     });
   })
   .catch(err => {
-    console.error('MongoDB connection error:', err);
+    console.log('MongoDB connection error:', err);
   });
+
+export default app;
